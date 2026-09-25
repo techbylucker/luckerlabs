@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LuckerLabs | Exkluzivní Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    /* LIGHT MODE - Apple Clean */
+    --bg: #ffffff;
+    --surface: #f5f5f7;
+    --text: #1d1d1f;
+    --text-muted: #86868b;
+    --nav-bg: rgba(255, 255, 255, 0.72);
+    --nav-border: rgba(0, 0, 0, 0.08);
+    --accent: #0066cc;
+    --accent-hover: #0077ED;
+    --btn-text: #ffffff;
+  }
+
+  [data-theme="dark"] {
+    /* DARK MODE - OLED Black */
+    --bg: #000000;
+    --surface: #111111;
+    --text: #f5f5f7;
+    --text-muted: #86868b;
+    --nav-bg: rgba(0, 0, 0, 0.72);
+    --nav-border: rgba(255, 255, 255, 0.08);
+    --accent: #2997ff;
+    --accent-hover: #3E9FFF;
+    --btn-text: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.47059;
+    letter-spacing: -0.015em;
+    padding-top: 54px; /* Výška navigace */
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  a { color: inherit; text-decoration: none; cursor: pointer; }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .page-view {
+    display: none;
+    opacity: 0;
+    animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .page-view.active { display: block; }
+  
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 54px;
+    background: var(--nav-bg);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--nav-border);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .logo { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; }
+  
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  
+  .nav-links a {
+    font-size: 12px;
+    color: var(--text);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    text-transform: lowercase;
+  }
+  .nav-links a:hover, .nav-links a.active { opacity: 1; font-weight: 500; }
+
+  .controls { display: flex; align-items: center; gap: 16px; }
+  .theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  .theme-btn:hover { opacity: 1; }
+  .theme-btn svg { width: 16px; height: 16px; }
+  .icon-moon { display: none; }
+  [data-theme="dark"] .icon-sun { display: none; }
+  [data-theme="dark"] .icon-moon { display: block; }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--btn-text);
+    padding: 12px 24px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  .btn:hover { background: var(--accent-hover); transform: scale(1.02); }
+  
+  .btn.secondary {
+    background: var(--surface);
+    color: var(--text);
+  }
+  .btn.secondary:hover { background: var(--nav-border); }
+
+  .hero {
+    text-align: center;
+    padding: 140px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 100px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+  }
+  .hero p.lead {
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--text-muted);
+    font-weight: 500;
+    max-width: 650px;
+    margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 16px; justify-content: center;}
+
+  .hero-image-placeholder {
+    width: 100%;
+    max-width: 1000px;
+    height: 500px;
+    margin-top: 60px;
+    background: var(--surface);
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    padding: 100px 0 60px;
+  }
+
+  .grid-products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px;
+    padding-bottom: 100px;
+  }
+  @media (max-width: 800px) { .grid-products { grid-template-columns: 1fr; } }
+
+  /* TADY JE TEN CLEAN APPLE LOOK BEZ KRABIC */
+  .product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    group: hover;
+  }
+  
+  .product-item h3 { 
+    font-size: 32px; 
+    font-weight: 600; 
+    margin-top: 30px;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+  .product-item:hover h3 { color: var(--accent); }
+  
+  .product-item .price { 
+    font-size: 18px; 
+    color: var(--text-muted); 
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .product-item-img {
+    width: 100%;
+    height: 400px;
+    background: var(--surface);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .product-item:hover .product-item-img { transform: scale(1.02); }
+
+  /* PRODUCT DETAIL PAGE */
+  .detail-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+  }
+  
+  .detail-badge {
+    background: rgba(41, 151, 255, 0.1);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .detail-hero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+  }
+
+  .detail-hero .tagline {
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+
+  .detail-image-box {
+    width: 100%;
+    height: 500px;
+    background: var(--surface);
+    border-radius: 32px;
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  .detail-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 100px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .detail-info-grid { grid-template-columns: 1fr; gap: 40px; }
+    .detail-image-box { height: 350px; border-radius: 20px;}
+  }
+
+  .detail-price-box {
+    text-align: left;
+  }
+  .detail-price-box .price {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  
+  .specs-list {
+    list-style: none;
+    margin-top: 24px;
+    border-top: 1px solid var(--nav-border);
+  }
+  .specs-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--nav-border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+  .specs-list li span:first-child { color: var(--text-muted); }
+
+  .text-block {
+    max-width: 700px;
+    margin: 0 auto 100px;
+    text-align: center;
+  }
+  .text-block h2 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .text-block p {
+    font-size: 20px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--nav-border);
+    margin-top: 60px;
+  }
+
+  /* SVG Icons */
+  svg.check-icon { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="navigate('home')" style="cursor: pointer;">LuckerLabs.</div>
+    <ul class="nav-links">
+      <li><a onclick="navigate('home')" data-target="home" class="active">domů</a></li>
+      <li><a onclick="navigate('nabidka')" data-target="nabidka">sklad</a></li>
+      <li><a onclick="navigate('certified')" data-target="certified">certifikace</a></li>
+      <li><a onclick="navigate('about')" data-target="about">o mně</a></li>
+    </ul>
+    <div class="controls">
+      <button class="theme-btn" id="themeToggle" aria-label="Přepnout motiv">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.6M12 18.9v2.6M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.6M18.9 12h2.6M4.2 19.8l1.8-1.8M18 6l1.8-1.8"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.2 14.6a8.2 8.2 0 0 1-10.8-10.8 8.7 8.7 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  
+  <div id="home" class="page-view active">
+    <div class="hero">
+      <h1>Čistý tech.<br>Bez kompromisů.</h1>
+      <p class="lead">Exkluzivní asijské modely. Vyladěné v LuckerLabu. Skladem u mě v ČR s garancí při převzetí.</p>
+      <div class="hero-actions">
+        <a onclick="navigate('nabidka')" class="btn">Prohlédnout sklad</a>
+        <a onclick="navigate('certified')" class="btn secondary">Proces certifikace</a>
+      </div>
+      
+      <div class="hero-image-placeholder">
+        [ Zde bude tvá obří ateliérová fotka (Hero Shot) na šedém/černém pozadí ]
+      </div>
+    </div>
+  </div>
+
+  <div id="nabidka" class="page-view">
+    <h1 class="section-title">Modely skladem.</h1>
+    
+    <div class="grid-products">
+      
+      <!-- INZERÁT 1: Po kliknutí zavolá funkci openProduct s ID produktu -->
+      <div class="product-item" onclick="openProduct('mi10ultra')">
+        <div class="product-item-img">[ Velká fotka Mi 10 Ultra bez pozadí ]</div>
+        <h3>Xiaomi Mi 10 Ultra</h3>
+        <div class="price">11 490 Kč</div>
+        <span class="btn secondary" style="font-size: 12px; padding: 8px 16px;">Zjistit více</span>
+      </div>
+
+      <!-- INZERÁT 2 -->
+      <div class="product-item" onclick="openProduct('p50pro')">
+        <div class="product-item-img">[ Velká fotka P50 Pro bez pozadí ]</div>
+        <h3>Huawei P50 Pro</h3>
+        <div class="price">13 990 Kč</div>
+        <span class="btn secondary" style="font-size: 12px; padding: 8px 16px;">Zjistit více</span>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- DYNAMICKÁ PRODUKTOVÁ STRÁNKA -->
+  <div id="product-detail" class="page-view">
+    <div class="detail-hero">
+      <div class="detail-badge">
+        <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        Lucker Certified
+      </div>
+      <h1 id="pd-name">Název Telefonu</h1>
+      <p class="tagline" id="pd-tagline">Krátký úderný podtitulek telefonu.</p>
+      
+      <div class="detail-image-box" id="pd-image">
+        [ Zde bude obrovská produktová fotka ]
+      </div>
+    </div>
+
+    <div class="detail-info-grid">
+      <div class="detail-desc">
+        <h3 style="font-size: 24px; margin-bottom: 16px; letter-spacing: -0.02em;">O tomto kusu</h3>
+        <p style="font-size: 17px; color: var(--text-muted); line-height: 1.5;" id="pd-desc">
+          Zde bude detailní popis toho, co jsi s telefonem v laboratoři dělal.
+        </p>
+      </div>
+
+      <div class="detail-price-box">
+        <div class="price" id="pd-price">00 000 Kč</div>
+        <a href="https://wa.me/420000000000" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px;">Koupit přes WhatsApp</a>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">Osobní předání v Praze nebo Zásilkovna.</p>
+        
+        <ul class="specs-list" id="pd-specs">
+          <!-- Zde se generují specifikace z JS -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="certified" class="page-view">
+    <h1 class="section-title">Lucker Certified.</h1>
+    
+    <div class="text-block">
+      <h2>Ultimátní hygiena.</h2>
+      <p>Každý telefon kompletně čistím na molekulární úrovni. Porty, hrany i povrch displeje. Přístroj vypadá a působí jako by zrovna vyjel z linky. Celý proces je absolutně čistý.</p>
+    </div>
+
+    <div class="text-block">
+      <h2>Software laděný pro ČR.</h2>
+      <p>Čínský bloatware nemá šanci. Nahrávám čisté ROMky. Precizně konfiguruji microG pro bezchybný běh Google služeb tak, abys mohl telefon zapnout a rovnou používat bez omezování.</p>
+    </div>
+
+    <div class="text-block">
+      <h2>Neviditelný UV podpis.</h2>
+      <p>Garantuji, že se v telefonu nehrabal žádný garážový servis. Vnitřní plomba a podpis pod UV světlem jsou absolutním důkazem, že hardware prošel výhradně mýma rukama.</p>
+    </div>
+  </div>
+
+  <div id="about" class="page-view">
+    <h1 class="section-title">O mně.</h1>
+    <div class="text-block">
+      <h2>Telefony neschovávám. Ladím je.</h2>
+      <p>
+        Celé LuckerLabs vzniklo z frustrace z asijského dropshippingu. Člověk chce exkluzivní kus hardwaru, ale dočká se nulové podpory, zamatlaného displeje a rozbitého softwaru.
+      </p>
+      <p>
+        Vybral jsem jinou cestu. Kupuji ty nejlepší a nejzajímavější modely, čistím je, nahazuji ověřený systém a prodávám je, až když mi reálně leží na stole v Praze. Žádný čekání, žádný stres.
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  LuckerLabs. © 2026
+</footer>
+
+<script>
+  
+  // Databáze tvých telefonů
+  // Tady si jednoduše přidáváš další telefony
+  const products = {
+    'mi10ultra': {
+      name: 'Xiaomi Mi 10 Ultra',
+      tagline: 'Desetiletí inovací v jednom těle.',
+      price: '11 490 Kč',
+      desc: 'Tenhle kousek u nás normálně neseženete. Telefon prošel kompletním procesem v LuckerLabu – je perfektně vyčištěný a systém je optimalizovaný pro bezproblémový chod v ČR.',
+      imageText: '[ Obrovská detailní fotka Mi 10 Ultra ]',
+      specs: {
+        'Stav': 'Jako nový (vyčištěno)',
+        'Software': 'Odemčeno, plný Google',
+        'Záruka': 'Garance při převzetí',
+        'Dostupnost': 'Skladem v Praze'
+      }
+    },
+    'p50pro': {
+      name: 'Huawei P50 Pro',
+      tagline: 'Legenda mobilní fotografie. Nyní s Googlem.',
+      price: '13 990 Kč',
+      desc: 'Nekompromisní fotografický nástroj. Díky mému preciznímu nastavení microG ti na něm poběží Google služby hned po vybalení z krabice.',
+      imageText: '[ Obrovská detailní fotka P50 Pro ]',
+      specs: {
+        'Stav': 'Výborný (vyčištěno)',
+        'Software': 'HarmonyOS + microG',
+        'Záruka': 'Garance při převzetí',
+        'Dostupnost': 'Skladem v Praze'
+      }
+    }
+  };
+
+  
+  // Logika Dark/Light Mode
+  (function(){
+    let saved = localStorage.getItem('lucker-theme');
+    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const theme = saved || preferred;
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('lucker-theme', next);
+  });
+
+  // SPA ROUTER: Přepínání stránek
+  function navigate(pageId) {
+    // Schovat vše
+    document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    
+    // Zobrazit cíl
+    const targetPage = document.getElementById(pageId) || document.getElementById('home');
+    targetPage.classList.add('active');
+    
+    // Zvýraznit tab v menu (pokud nejsme na detailu produktu)
+    const targetTab = document.querySelector(`.nav-links a[data-target="${pageId}"]`);
+    if(targetTab) targetTab.classList.add('active');
+    
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.location.hash = pageId;
+  }
+
+  // Funkce na otevření detailu produktu
+  function openProduct(id) {
+    const p = products[id];
+    if(!p) return;
+    
+    // Dosazení dat do HTML struktury
+    document.getElementById('pd-name').innerText = p.name;
+    document.getElementById('pd-tagline').innerText = p.tagline;
+    document.getElementById('pd-price').innerText = p.price;
+    document.getElementById('pd-desc').innerText = p.desc;
+    document.getElementById('pd-image').innerText = p.imageText;
+    
+    // Generování specifikací (tabulky)
+    const specsList = document.getElementById('pd-specs');
+    specsList.innerHTML = '';
+    for (const [key, value] of Object.entries(p.specs)) {
+      specsList.innerHTML += `<li><span>${key}</span> <span>${value}</span></li>`;
+    }
+    
+    // Změna stránky na detail
+    navigate('product-detail');
+  }
+
+  // Načtení z URL hashtagu po startu
+  window.addEventListener('load', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) {
+      navigate(hash);
+    }
+  });
+</script>
+</body>
+</html>
