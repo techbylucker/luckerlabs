@@ -384,6 +384,7 @@
 
 <main class="container">
   
+  <!-- DOMOVSKÁ STRÁNKA -->
   <div id="home" class="page-view active">
     <div class="hero">
       <h1>Čistý tech.<br>Bez kompromisů.</h1>
@@ -393,18 +394,18 @@
         <a onclick="navigate('certified')" class="btn secondary">Proces certifikace</a>
       </div>
       
-      <!-- LuckerLabs Banner -->
+      <!-- Tvůj vygenerovaný Banner -->
       <div style="margin-top: 60px; width: 100%; max-width: 1000px; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
         <img src="banner.jpg" alt="LuckerLabs Banner" style="width: 100%; display: block;">
       </div>
     </div>
   </div>
 
+  <!-- SHOWROOM (Nabídka) -->
   <div id="nabidka" class="page-view">
     <h1 class="section-title">Modely skladem.</h1>
     
     <div class="grid-products">
-      <!-- INZERÁT 1 -->
       <div class="product-item" onclick="openProduct('mi10ultra')">
         <div class="product-item-img">[ Velká fotka Mi 10 Ultra bez pozadí ]</div>
         <h3>Xiaomi Mi 10 Ultra</h3>
@@ -412,7 +413,6 @@
         <span class="btn secondary" style="font-size: 12px; padding: 8px 16px;">Zjistit více</span>
       </div>
 
-      <!-- INZERÁT 2 -->
       <div class="product-item" onclick="openProduct('p50pro')">
         <div class="product-item-img">[ Velká fotka P50 Pro bez pozadí ]</div>
         <h3>Huawei P50 Pro</h3>
@@ -422,7 +422,7 @@
     </div>
   </div>
 
-  <!-- DYNAMICKÁ PRODUKTOVÁ STRÁNKA -->
+  <!-- DYNAMICKÝ DETAIL PRODUKTU (Tohle dělalo bordel) -->
   <div id="product-detail" class="page-view">
     <div class="detail-hero">
       <div class="detail-badge">
@@ -441,39 +441,38 @@
       <div class="detail-desc">
         <h3 style="font-size: 24px; margin-bottom: 16px; letter-spacing: -0.02em;">O tomto kusu</h3>
         <p style="font-size: 17px; color: var(--text-muted); line-height: 1.5;" id="pd-desc">
-          Zde bude detailní popis toho, co jsi s telefonem v laboratoři dělal.
+          Popis produktu.
         </p>
       </div>
 
       <div class="detail-price-box">
         <div class="price" id="pd-price">00 000 Kč</div>
-        <a href="https://wa.me/420000000000" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px;">Koupit přes WhatsApp</a>
+        <a href="https://wa.me/420123456789" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px;">Koupit přes WhatsApp</a>
         <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">Osobní předání v Praze nebo Zásilkovna.</p>
         
-        <!-- PŘÍPLATKOVÝ BOX -->
+        <!-- PŘÍPLATKOVÁ SLUŽBA -->
         <div style="background: var(--surface); padding: 20px; border-radius: 16px; margin-top: 24px; border: 1px solid var(--nav-border); text-align: left;">
           <h3 style="font-size: 16px; margin-bottom: 8px;">➕ Volitelný Lucker Setup (+ 300 Kč)</h3>
           <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.5;">Nechceš se s ničím drbat? Před odesláním telefon profesionálně odhmyzím od asijského bloatwaru a nainstaluji kompletní Google služby (microG). Přijde ti kousek, který jen zapneš a rovnou funguješ.</p>
         </div>
 
-        <ul class="specs-list" id="pd-specs">
-          <!-- Zde se generují specifikace z JS -->
-        </ul>
+        <ul class="specs-list" id="pd-specs"></ul>
       </div>
     </div>
   </div>
 
+  <!-- CERTIFIKACE -->
   <div id="certified" class="page-view">
     <h1 class="section-title">Lucker Certified.</h1>
     
     <div class="text-block">
       <h2>Lucker certified.</h2>
-      <p>Důkladná softwarová diagnostika a detailing. Každý kousek osobně prověřím, vyčistím a připravím.</p>
+      <p>Důkladná hardwarová inspekce a precizní detailing. Každý kousek osobně prověřím, vyčistím a připravím do 100% stavu.</p>
     </div>
 
     <div class="text-block">
-      <h2>Software odladěný na jedničku.</h2>
-      <p>Žádný ořezaný globalní software. Tovární asijský software v plné palbě, se všema funkcema tak, jak ho výrobce zamýšlel.</p>
+      <h2>Čistý asijský originál.</h2>
+      <p>Žádný ořezaný global. Tovární asijský software v plné palbě a se všema funkcema tak, jak ho výrobce zamýšlel.</p>
     </div>
 
     <div class="text-block">
@@ -482,18 +481,14 @@
     </div>
   </div>
 
+  <!-- O MNĚ A KONTAKT -->
   <div id="about" class="page-view">
     <h1 class="section-title">O mně a kontakt.</h1>
     <div class="text-block">
       <h2>Telefony neschovávám. Ladím je.</h2>
-      <p>
-        Celé LuckerLabs vzniklo z frustrace z asijského dropshippingu. Člověk chce exkluzivní kus hardwaru, ale dočká se nulové podpory, zamatlaného displeje a rozbitého softwaru.
-      </p>
-      <p>
-        Vybral jsem jinou cestu. Kupuji ty nejlepší modely, dělám jim detailing a prodávám je, až když mi reálně leží na stole v Praze. Žádný čekání, žádný stres.
-      </p>
+      <p>Celé LuckerLabs vzniklo z frustrace z asijského dropshippingu. Člověk chce exkluzivní kus hardwaru, ale dočká se nulové podpory, zamatlaného displeje a rozbitého softwaru.</p>
+      <p>Vybral jsem jinou cestu. Kupuji ty nejlepší modely, dělám jim detailing a prodávám je, až když mi reálně leží na stole v Praze. Žádný čekání, žádný stres.</p>
 
-      <!-- KONTAKTNÍ BOX -->
       <div style="background: var(--surface); padding: 30px; border-radius: 20px; margin-top: 40px; text-align: left; border: 1px solid var(--nav-border);">
         <h3 style="margin-bottom: 12px; font-size: 20px;">Jak nakupovat:</h3>
         <p style="color: var(--text); font-size: 16px; margin-bottom: 8px; font-weight: 500;">📱 +420 123 456 789</p>
@@ -503,11 +498,70 @@
   </div>
 
 </main>
+
 <footer>
   LuckerLabs. © 2026
 </footer>
 
 <script>
+  function navigate(viewId) {
+    document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+    
+    document.getElementById(viewId).classList.add('active');
+    const activeLink = document.querySelector(`.nav-links a[data-target="${viewId}"]`);
+    if(activeLink) activeLink.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  const products = {
+    'mi10ultra': {
+      name: 'Xiaomi Mi 10 Ultra',
+      tagline: 'Desetiletí inovací v jednom těle.',
+      price: '11 490 Kč',
+      desc: 'Tenhle kousek u nás normálně neseženete. Čistý asijský originál v top stavu. Můžeš si ho nechat v továrním nastavení, nebo si přihoď Lucker Setup a pošlu ti ho hned ready pro ČR.',
+      imageText: '[ Obrovská detailní fotka Mi 10 Ultra ]',
+      specs: {
+        'Stav': 'Jako nový (vyčištěno)',
+        'Software': 'Čistý CN firmware',
+        'Záruka': 'Garance při převzetí',
+        'Dostupnost': 'Skladem v Praze'
+      }
+    },
+    'p50pro': {
+      name: 'Huawei P50 Pro',
+      tagline: 'Legenda mobilní fotografie.',
+      price: '13 990 Kč',
+      desc: 'Nekompromisní fotografický nástroj s původním HarmonyOS. Chceš Google a instalaci bez starostí? Přihoď si Lucker Setup a pošlu ti to s nastaveným microG a odladěným systémem.',
+      imageText: '[ Obrovská detailní fotka P50 Pro ]',
+      specs: {
+        'Stav': 'Výborný (vyčištěno)',
+        'Software': 'HarmonyOS (CN)',
+        'Záruka': 'Garance při převzetí',
+        'Dostupnost': 'Skladem v Praze'
+      }
+    }
+  };
+
+  function openProduct(id) {
+    const p = products[id];
+    if(!p) return;
+    
+    document.getElementById('pd-name').innerText = p.name;
+    document.getElementById('pd-tagline').innerText = p.tagline;
+    document.getElementById('pd-price').innerText = p.price;
+    document.getElementById('pd-desc').innerText = p.desc;
+    document.getElementById('pd-image').innerText = p.imageText;
+    
+    const specsList = document.getElementById('pd-specs');
+    specsList.innerHTML = '';
+    for (const [key, value] of Object.entries(p.specs)) {
+      specsList.innerHTML += `<li><span>${key}</span><span>${value}</span></li>`;
+    }
+    
+    navigate('product-detail');
+  }
+</script>
   
   // Databáze tvých telefonů
   // Tady si jednoduše přidáváš další telefony
