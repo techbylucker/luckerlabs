@@ -564,13 +564,13 @@
       <div class="product-item" onclick="openProduct('jizbrzy')">
         <div class="product-item-img">[ Fotka 1 z 8: Již Brzy ]</div>
         <h3>Již Brzy</h3>
-        <div class="price">0 Kč</div>
+        <div class="price">67 Kč</div>
       </div>
 
       <div class="product-item" onclick="openProduct('jizbrzy2')">
-        <div class="product-item-img">[ Fotka 1 z 8: Již Brzy ]</div>
+        <div class="product-item-img">[ Fotka 1 z 8: Již Brzy 2 ]</div>
         <h3>Již Brzy</h3>
-        <div class="price">67 Kč</div>
+        <div class="price">69 Kč</div>
       </div>
     </div>
   </div>
@@ -752,8 +752,8 @@
     'jizbrzy': {
       name: 'Již Brzy',
       tagline: 'Něco legendární.',
-      basePrice: 11490,
-      desc: 'Tenhle kousek u nás normálně neseženete. Čistý asijský originál v top stavu. Můžeš si ho nechat v továrním nastavení, nebo si přihoď Lucker Setup a pošlu ti ho hned ready pro ČR.',
+      basePrice: 67,
+      desc: '-',
       images: [
         '[ Fotka 1/8: Zepředu - Displej ]',
         '[ Fotka 2/8: Zezadu - Keramická záda ]',
@@ -778,8 +778,8 @@
     'jizbrzy2': {
       name: 'Již Brzy',
       tagline: 'Něco levného ?',
-      basePrice: 13990,
-      desc: 'Zatim se nic nedozvíš :D',
+      basePrice: 69,
+      desc: '-',
       images: [
         '[ Fotka 1/8: Zepředu - Displej ]',
         '[ Fotka 2/8: Zezadu - Cocoa Gold ]',
@@ -791,13 +791,13 @@
         '[ Fotka 8/8: Kompletní balení ]'
       ],
       specs: {
-        'Stav zařízení': '?)',
-        'Kondice baterie': '?,
-        'Software': '?,
+        'Stav zařízení': '?',
+        'Kondice baterie': '?',
+        'Software': '?',
         'Podpora češtiny': '?'
       },
       itemSpecs: {
-        'Vyměněné díly': '?,
+        'Vyměněné díly': '?',
         'Vizuální vady': '?'
       }
     }
@@ -814,7 +814,8 @@
     if(!currentProductId) return;
     const p = products[currentProductId];
     
-    document.getElementById('pd-image-content').innerText = p.images[currentImageIndex];
+    // ZMĚNA: innerHTML místo innerText, aby šlo do pole images[] vkládat <img> tagy
+    document.getElementById('pd-image-content').innerHTML = p.images[currentImageIndex];
     
     const dotsContainer = document.getElementById('pd-dots');
     dotsContainer.innerHTML = '';
