@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LuckerLabs | Exkluzivní Tech</title>
+<title>LuckerLabs | Otestováno & Skladem</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,13 +11,13 @@
   :root {
     --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     
-    /* LIGHT MODE - Apple Clean */
+    /* LIGHT MODE */
     --bg: #ffffff;
     --surface: #f5f5f7;
-    --text: #1d1d1f;
-    --text-muted: #86868b;
-    --nav-bg: rgba(255, 255, 255, 0.72);
-    --nav-border: rgba(0, 0, 0, 0.08);
+    --text: #111111;
+    --text-muted: #666666;
+    --nav-bg: rgba(255, 255, 255, 0.85);
+    --nav-border: rgba(0, 0, 0, 0.06);
     --accent: #0066cc;
     --accent-hover: #0077ED;
     --btn-text: #ffffff;
@@ -25,12 +25,12 @@
   }
 
   [data-theme="dark"] {
-    /* DARK MODE - OLED Black */
-    --bg: #000000;
-    --surface: #111111;
+    /* DARK MODE - Soft Charcoal */
+    --bg: #141417;
+    --surface: #1c1c1f;
     --text: #f5f5f7;
-    --text-muted: #86868b;
-    --nav-bg: rgba(0, 0, 0, 0.72);
+    --text-muted: #98989f;
+    --nav-bg: rgba(20, 20, 23, 0.85);
     --nav-border: rgba(255, 255, 255, 0.08);
     --accent: #2997ff;
     --accent-hover: #3E9FFF;
@@ -49,7 +49,7 @@
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--font);
-    line-height: 1.47059;
+    line-height: 1.5;
     letter-spacing: -0.015em;
     padding-top: 54px;
     transition: background-color 0.4s ease, color 0.4s ease;
@@ -98,7 +98,7 @@
     padding: 0 20px;
   }
 
-  .logo { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; cursor: pointer; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -0.03em; cursor: pointer; text-transform: uppercase;}
   
   .nav-links {
     display: flex;
@@ -130,7 +130,7 @@
     transition: opacity 0.3s ease;
   }
   .theme-btn:hover { opacity: 1; }
-  .theme-btn svg { width: 16px; height: 16px; }
+  .theme-btn svg { width: 18px; height: 18px; }
   .icon-moon { display: none; }
   [data-theme="dark"] .icon-sun { display: none; }
   [data-theme="dark"] .icon-moon { display: block; }
@@ -141,78 +141,89 @@
     justify-content: center;
     background: var(--accent);
     color: #ffffff !important;
-    padding: 10px 22px;
+    padding: 12px 28px;
     border-radius: 980px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
     text-align: center;
     transition: all 0.3s ease;
-    border: 1px solid var(--accent);
+    border: none;
   }
-  .btn:hover { background: var(--accent-hover); transform: scale(1.02); }
+  .btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 10px 20px -10px var(--accent); }
   
   .btn.outline {
     background: transparent;
-    color: var(--accent) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--nav-border);
   }
   .btn.outline:hover {
-    background: rgba(0, 102, 204, 0.1);
+    background: var(--surface);
+    box-shadow: none;
   }
 
   .hero {
     text-align: center;
-    padding: 100px 20px 0;
+    padding: 120px 20px 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
   }
+  
   .hero h1 {
-    font-size: clamp(40px, 8vw, 72px);
-    font-weight: 700;
+    font-size: clamp(40px, 8vw, 85px);
+    font-weight: 800;
     line-height: 1.05;
     letter-spacing: -0.04em;
-    margin-bottom: 8px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--text) 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+  
   .hero p.lead {
-    font-size: clamp(20px, 3vw, 24px);
+    font-size: clamp(18px, 3vw, 24px);
     color: var(--text-muted);
-    font-weight: 400;
-    margin-bottom: 32px;
+    font-weight: 500;
+    max-width: 650px;
+    margin-bottom: 40px;
+    line-height: 1.5;
   }
-  .hero-actions { display: flex; gap: 14px; justify-content: center;}
+  
+  .hero-actions { 
+    display: flex; 
+    gap: 16px; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+  }
 
-  .hero-banner {
+  .hero-banner-box {
     width: 100%;
-    max-width: 900px;
-    height: 400px;
+    max-width: 1000px;
+    height: 450px;
     margin-top: 60px;
     background: var(--surface);
-    border-radius: 24px;
+    border-radius: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    border: 1px solid var(--nav-border);
+    font-size: 15px;
+    font-weight: 600;
     overflow: hidden;
-    position: relative;
   }
 
   .section-title {
     text-align: center;
     font-size: clamp(32px, 5vw, 56px);
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.03em;
-    padding: 100px 0 60px;
+    padding: 80px 0 50px;
   }
 
   .grid-products {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 60px 40px;
+    gap: 50px 30px;
     padding-bottom: 100px;
   }
   @media (max-width: 800px) { .grid-products { grid-template-columns: 1fr; } }
@@ -226,24 +237,25 @@
   }
   
   .product-item h3 { 
-    font-size: 32px; 
-    font-weight: 600; 
-    margin-top: 30px;
-    letter-spacing: -0.01em;
+    font-size: 28px; 
+    font-weight: 700; 
+    margin-top: 24px;
+    letter-spacing: -0.02em;
     transition: color 0.3s ease;
   }
   .product-item:hover h3 { color: var(--accent); }
   
   .product-item .price { 
     font-size: 18px; 
+    font-weight: 500;
     color: var(--text-muted); 
-    margin-top: 8px;
+    margin-top: 6px;
     margin-bottom: 16px;
   }
   
   .product-item-img {
     width: 100%;
-    height: 400px;
+    height: 380px;
     background: var(--surface);
     border-radius: 24px;
     display: flex;
@@ -253,36 +265,50 @@
     font-size: 14px;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .product-item:hover .product-item-img { transform: scale(1.02); }
+  .product-item:hover .product-item-img { transform: scale(1.03); }
 
   .detail-hero {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 60px;
   }
 
   .detail-hero h1 {
-    font-size: clamp(40px, 6vw, 72px);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    margin-bottom: 12px;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
   }
 
   .detail-hero .tagline {
-    font-size: clamp(20px, 3vw, 28px);
+    font-size: clamp(18px, 2.5vw, 22px);
     color: var(--text-muted);
     font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .certified-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(41, 151, 255, 0.12);
+    color: var(--accent);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
     margin-bottom: 30px;
   }
 
   .detail-image-box {
     width: 100%;
-    height: 500px;
+    max-width: 800px;
+    height: 480px;
     background: var(--surface);
     border-radius: 32px;
-    margin: 40px 0;
+    margin: 20px auto 40px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -299,7 +325,7 @@
     border-radius: 50%;
     background: var(--nav-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--nav-border);
+    border: none;
     color: var(--text);
     display: flex;
     align-items: center;
@@ -322,11 +348,11 @@
   .gallery-dot {
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.4);
+    background: rgba(128,128,128,0.4);
     cursor: pointer;
     transition: background 0.3s;
   }
-  .gallery-dot.active { background: #ffffff; }
+  .gallery-dot.active { background: var(--text); }
 
   .detail-info-grid {
     display: grid;
@@ -334,50 +360,62 @@
     gap: 60px;
     padding-bottom: 100px;
     align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
   }
   @media (max-width: 768px) {
     .detail-info-grid { grid-template-columns: 1fr; gap: 40px; }
-    .detail-image-box { height: 350px; border-radius: 20px;}
+    .detail-image-box { height: 320px; border-radius: 20px;}
   }
 
-  .detail-price-box { text-align: left; }
-  .price-wrapper {
+  .specs-list {
+    list-style: none;
+    margin-top: 24px;
+    background: rgba(120, 120, 120, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--nav-border);
+    border-radius: 20px;
+    padding: 10px 24px;
+  }
+  .specs-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--nav-border);
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
+    font-size: 15px;
   }
-  .detail-price-box .price {
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-  }
+  .specs-list li:last-child { border-bottom: none; }
+  .specs-list li span:first-child { color: var(--text-muted); font-weight: 500; }
+  .specs-list li span:last-child { font-weight: 600; color: var(--text); text-align: right; }
+
+  .detail-price-box { text-align: left; }
   
-  /* CASINO SLOT MACHINE ROLL ANIMATION */
-  @keyframes slot-roll {
-    0% { transform: translateY(-12px); opacity: 0; filter: blur(4px); }
-    50% { transform: translateY(4px); opacity: 0.8; }
-    100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+  @keyframes slot-spin {
+    0% { transform: translateY(-20px) scale(0.9); opacity: 0; filter: blur(4px); color: var(--accent); }
+    50% { transform: translateY(4px) scale(1.05); opacity: 0.8; filter: blur(1px); color: var(--accent); }
+    100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); color: inherit; }
   }
-  .slot-animating {
-    animation: slot-roll 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  .casino-rolling {
     display: inline-block;
-    color: var(--accent);
+    animation: slot-spin 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
   }
 
   .setup-card {
-    background: var(--surface);
-    padding: 20px;
-    border-radius: 16px;
-    margin-top: 24px;
-    border: 1px solid var(--nav-border);
+    background: rgba(120, 120, 120, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 22px;
+    border-radius: 20px;
+    margin-top: 16px;
     text-align: left;
     cursor: pointer;
     display: flex;
-    gap: 12px;
+    gap: 14px;
     align-items: flex-start;
     transition: all 0.2s ease;
+    border: 1px solid var(--nav-border);
   }
   .setup-card input[type="checkbox"] {
     margin-top: 4px;
@@ -386,45 +424,28 @@
   }
   .setup-card.active {
     border-color: var(--accent);
-    background: rgba(0, 102, 204, 0.05);
+    background: rgba(41, 151, 255, 0.1);
   }
-
-  .specs-list {
-    list-style: none;
-    margin-top: 24px;
-    border-top: 1px solid var(--nav-border);
-  }
-  .specs-list li {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--nav-border);
-    display: flex;
-    justify-content: space-between;
-    font-size: 15px;
-  }
-  .specs-list li span:first-child { color: var(--text-muted); }
 
   .text-block {
     max-width: 800px;
-    margin: 0 auto 60px;
+    margin: 0 auto 50px;
     text-align: left;
-    background: var(--surface);
-    padding: 40px;
-    border-radius: 24px;
-    border: 1px solid var(--nav-border);
+    background: transparent;
+    padding: 0;
   }
   .text-block h2 {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 32px;
+    font-weight: 800;
     margin-bottom: 16px;
     letter-spacing: -0.02em;
   }
   .text-block p {
     color: var(--text-muted);
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.6;
     margin-bottom: 16px;
   }
-  .text-block p:last-child { margin-bottom: 0; }
 
   .condition-grid {
     max-width: 800px;
@@ -436,48 +457,68 @@
     display: flex;
     gap: 30px;
     align-items: flex-start;
-    padding: 30px 0;
+    padding: 26px 0;
     border-bottom: 1px solid var(--nav-border);
   }
   .condition-row:last-child { border-bottom: none; }
   .condition-grade {
-    font-size: 48px;
+    font-size: 42px;
     font-weight: 800;
-    min-width: 80px;
+    min-width: 70px;
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
   }
   
-  .grade-s { color: var(--grade-s); }
+  .grade-s { color: #0066cc; }
   .grade-a { color: #32D74B; }
   .grade-b { color: #FF9F0A; }
   .grade-c { color: #FF453A; }
 
   .condition-desc h3 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
     letter-spacing: -0.01em;
   }
   .condition-desc p {
     color: var(--text-muted);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
   }
   @media (max-width: 600px) {
     .condition-row { flex-direction: column; gap: 10px; }
   }
 
+  .social-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+  }
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--surface);
+    border-radius: 980px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  .social-btn:hover { background: var(--nav-border); }
+  .social-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
   footer {
     padding: 40px 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--text-muted);
     border-top: 1px solid var(--nav-border);
     margin-top: 60px;
   }
 
-  svg.check-icon { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  svg.check-icon { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 </style>
 </head>
 <body>
@@ -504,15 +545,13 @@
   
   <div id="home" class="page-view active">
     <div class="hero">
-      <h1>Čistý tech.<br>Bez kompromisů.</h1>
-      <p class="lead">Exkluzivní asijské modely. Vyladěné v LuckerLabu.</p>
-      
+      <h1>Otestováno. Vyladěno.<br>Skladem v ČR.</h1>
+      <p class="lead">Exkluzivní asijské modely i domácí kousky. Testuji, ladím a to nejlepší posílám dál.</p>
       <div class="hero-actions">
         <a onclick="navigate('nabidka')" class="btn">Prohlédnout showroom</a>
-        <a onclick="navigate('howitworks')" class="btn outline">Jak to funguje</a>
+        <a onclick="navigate('howitworks')" class="btn outline">Jak to u mě chodí</a>
       </div>
-      
-      <div class="hero-banner">
+      <div class="hero-banner-box">
         [ TADY BUDE TVOJE FOTKA / BANNER ]
       </div>
     </div>
@@ -541,15 +580,20 @@
       <h1 id="pd-name">Název Telefonu</h1>
       <p class="tagline" id="pd-tagline">Krátký úderný podtitulek telefonu.</p>
       
+      <div class="certified-pill">
+        <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        Lucker Certified
+      </div>
+      
       <div class="detail-image-box" id="pd-image-container">
         <button class="gallery-nav prev" onclick="changeImage(-1)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
-        <div id="pd-image-content" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-weight:500;">
-          <!-- Fotky z JS (celkem 8) -->
+        <div id="pd-image-content" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-weight:600;font-size:16px;">
+          <!-- Fotky se načítají z JS -->
         </div>
         <button class="gallery-nav next" onclick="changeImage(1)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
         <div class="gallery-dots" id="pd-dots"></div>
       </div>
@@ -557,108 +601,118 @@
 
     <div class="detail-info-grid">
       <div class="detail-desc">
-        <h3 style="font-size: 24px; margin-bottom: 16px; letter-spacing: -0.02em;">O tomto kusu</h3>
-        <p style="font-size: 17px; color: var(--text-muted); line-height: 1.5; margin-bottom: 30px;" id="pd-desc">
+        <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.02em;">O tomto kusu</h3>
+        <p style="font-size: 16px; color: var(--text-muted); line-height: 1.6; margin-bottom: 30px;" id="pd-desc">
           Popis produktu.
         </p>
 
-        <h3 style="font-size: 20px; margin-bottom: 12px; letter-spacing: -0.02em;">Detailní stav kusovky</h3>
-        <ul class="specs-list" id="pd-item-specs" style="margin-top:0;"></ul>
+        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;">Detailní specifikace a stav</h3>
+        <ul class="specs-list" id="pd-specs">
+            <!-- Specifikace se plní dynamicky -->
+        </ul>
       </div>
 
       <div class="detail-price-box">
         <div class="price-wrapper">
-          <div class="price" id="pd-price">00 000 Kč</div>
-          <div class="detail-badge">
-            <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            Lucker Certified
-          </div>
+          <div class="price" id="pd-price" style="font-size: 52px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 24px; min-height: 60px;">00 000 Kč</div>
         </div>
-        <a href="https://wa.me/420123456789" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px; border:none;">Koupit přes WhatsApp</a>
-        <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">Osobní předání v Praze nebo Zásilkovna.</p>
+        <a href="https://wa.me/420123456789" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px;">Koupit přes WhatsApp</a>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 14px; text-align: center; font-weight: 500;">Odesílám přes Zásilkovnu (poštovné předem na účet).</p>
         
-        <label class="setup-card" id="setup-label">
-          <input type="checkbox" id="setup-checkbox" onchange="toggleSetup()">
+        <label class="setup-card" id="setup-label" style="margin-top: 32px;">
+          <input type="checkbox" id="setup-checkbox" onchange="toggleServices()">
           <div>
-            <h3 style="font-size: 16px; margin-bottom: 8px;">➕ Lucker Setup (+ 300 Kč)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.5;">Nechceš se s ničím drbat? Před odesláním telefon odhmyzím od asijského bloatwaru a nainstaluji microG. Přijde ti kousek, který jen zapneš a rovnou funguješ.</p>
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">➕ Lucker Setup (+ 300 Kč)</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 0; line-height: 1.5;">Před odesláním telefon odhmyzím od bloatwaru a nainstaluji microG. Přijde ti kousek, který jen zapneš a rovnou funguješ.</p>
           </div>
         </label>
-
-        <ul class="specs-list" id="pd-specs"></ul>
       </div>
     </div>
   </div>
 
   <div id="howitworks" class="page-view">
-    <h1 class="section-title">Jak to funguje.</h1>
+    <h1 class="section-title">Jak to u mě chodí.</h1>
     
     <div class="text-block">
-      <h2>Sběratelská vášeň a čistá hra.</h2>
-      <p>Tohle není klasickej e-shop. Jde o <strong>prodej použitých a starých zařízení z mojí osobní sbírky</strong>.</p>
-      <p>Telefony kupuju, protože mě baví asijský exkluzivky. Chvíli si s nima hrajeme, experimentujeme, testujeme fotky, zkoušíme různé funkce a systémy. Když mě omrzí, pošlu je dál, abych měl místo (a peníze) na další kousky.</p>
+      <h2>Z osobní sbírky. Žádná prodejna.</h2>
+      <p>Nejsem žádný velký e-shop ani reseller co jen přeprodává krabice. Baví mě testovat a zkoušet různé telefony. Většinou tahám exkluzivní hardware z Asie a hraju si s foťákama a systémem. Občas sem hodím i něco lokálního, třeba svůj starý main nebo telefon z rodiny, který by jinak jen tak ležel v šuplíku.</p>
+      <p>Ceny dávám lepší než kdekoli jinde v Česku. Proč? Protože chci, aby tyhle stroje dělaly radost dál a ne aby mi tu jen ležely.</p>
       
-      <div style="background: rgba(255, 69, 58, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(255, 69, 58, 0.3); margin-top: 20px;">
-        <p style="color: #FF453A; font-weight: 600; font-size: 16px; margin-bottom: 0;">⚠️ Není tu žádná záruka. Ručím čistě za to, že telefon je 100% funkční ve chvíli osobního předání (nebo doručení zprávou). Jakmile si ho převezmeš a funguje, je tvůj. Další reklamace ani opravy neřeším, nemám na to kapacitu.</p>
+      <div style="background: rgba(255, 69, 58, 0.1); padding: 24px; border-radius: 16px; border: 1px solid rgba(255, 69, 58, 0.2); margin-top: 30px;">
+        <h3 style="color: #FF453A; font-weight: 700; font-size: 18px; margin-bottom: 8px;">⚠️ Důležité: Bez záruky</h3>
+        <p style="color: var(--text); font-size: 15px; margin-bottom: 0; line-height: 1.5;">Jelikož jde o prodej starších a použitých zařízení z mé osobní sbírky, <strong>žádnou dlouhodobou záruku neposkytuji</strong>. Ručím čistě za to, že telefon je 100% funkční ve chvíli, kdy si ho přebíráš. Jakmile ho otestuješ a funguje, je tvůj a dál už žádné opravy neřeším.</p>
+      </div>
+
+      <div style="background: rgba(41, 151, 255, 0.1); padding: 24px; border-radius: 16px; border: 1px solid rgba(41, 151, 255, 0.2); margin-top: 16px;">
+        <h3 style="color: var(--accent); font-weight: 700; font-size: 18px; margin-bottom: 8px;">📦 Doprava a platba</h3>
+        <p style="color: var(--text); font-size: 15px; margin-bottom: 0; line-height: 1.5;">Posílám výhradně přes Zásilkovnu. Jako pojistku proti nevyzvednutým balíkům beru částku za poštovné vždycky předem na účet. Zbytek ceny klidně na dobírku.</p>
       </div>
     </div>
 
     <h1 class="section-title" style="padding-top: 40px;">Tabulka stavů.</h1>
     
     <div class="text-block" style="margin-bottom: 50px;">
-      <p style="font-size: 15px; padding: 16px; background: rgba(41, 151, 255, 0.1); color: var(--accent); border-radius: 12px; display: inline-block;">
-        💡 <strong>Znaménko mínus (-):</strong> Pokud uvidíš u stavu telefonu mínus (např. S- nebo A-), znamená to, že telefon má <strong>profesionálně vyměněný nějaký díl</strong> (typicky nová baterie nebo displej). Hardware je 100% zkontrolovaný a šlape, jen to už není "původní díl z továrny".
-      </p>
+      <div style="padding: 16px 20px; background: rgba(41, 151, 255, 0.1); border-radius: 16px; display: inline-block;">
+        <p style="color: var(--accent); font-size: 15px; margin: 0; font-weight: 600;">
+          💡 <strong>Znaménko mínus za stavem:</strong> Pokud u stavu uvidíš mínus jako třeba S- nebo A-, znamená to, že telefon má profesionálně vyměněný díl jako je nová baterie. Hardware šlape na 100 %, jen už to zkrátka není čistý kus z továrny.
+        </p>
+      </div>
     </div>
     
     <div class="condition-grid">
-      
       <div class="condition-row">
         <div class="condition-grade grade-s">S</div>
         <div class="condition-desc">
           <h3>Super (Jako nový)</h3>
-          <p>Absolutně bez škrábanců a oděrek. Zařízení vypadá, jako by právě vyjelo z továrny. 100% původní díly, žádné zásahy do hardwaru ze strany třetích stran.</p>
+          <p>Absolutně bez škrábanců a oděrek. Zařízení vypadá, jako by právě vyjelo z fabriky. 100% původní tovární díly.</p>
         </div>
       </div>
-
       <div class="condition-row">
         <div class="condition-grade grade-a">A</div>
         <div class="condition-desc">
           <h3>Velmi dobrý</h3>
-          <p>Skoro jako nový. Může mít pouze zcela minimální, vlásečnicové oděrky viditelné pouze pod silným světlem (nejčastěji mikroškrábance na displeji, pokud se nenosilo sklo). Jinak v perfektní vizuální kondici.</p>
+          <p>Skoro jako nový. Může mít jen naprosto minimální vlásečnice viditelné pod ostrým světlem z běžného nošení bez skla. Vizuálně v top kondici.</p>
         </div>
       </div>
-
       <div class="condition-row">
         <div class="condition-grade grade-b">B</div>
         <div class="condition-desc">
           <h3>Dobrý</h3>
-          <p>Běžné opotřebení. Telefon má viditelnější oděrky na rámečku, odřeniny od nošení v kapse nebo škrábance na displeji z normálního používání. Hardware je ale 100% funkční a připravený sloužit.</p>
+          <p>Běžné stopy opotřebení. Viditelnější oděrky na rámečku nebo menší známky používání z kapsy. Funkčně naprosto bezchybný.</p>
         </div>
       </div>
-
       <div class="condition-row">
         <div class="condition-grade grade-c">C</div>
         <div class="condition-desc">
-          <h3>Přijatelný</h3>
-          <p>Hluboké škrábance (deep scratches), výraznější rýhy, praskliny na zádech nebo viditelné stopy po pádu. Ideální jako levný daily driver pro nenáročné uživatele, kteří řeší cenu a ne vizuál.</p>
+          <h3>Přijatelný stav</h3>
+          <p>Výraznější kosmetické stopy používání, hlubší rýhy. Ideální jako levný daily telefon.</p>
         </div>
       </div>
-
     </div>
   </div>
 
   <div id="about" class="page-view">
     <h1 class="section-title">O mně.</h1>
     <div class="text-block">
-      <h2>Z koníčku garážovej projekt.</h2>
-      <p>Celé LuckerLabs vzniklo z frustrace z asijského dropshippingu. Člověk chce exkluzivní kus hardwaru, ale dočká se nulové podpory, zamatlaného displeje a rozbitého softwaru.</p>
-      <p>Vybral jsem jinou cestu. Kupuji ty nejlepší modely do své sbírky, dělám jim detailing, otestuju je a prodávám dál, až když mi reálně leží na stole v Praze. Žádný čekání, žádný stres s celníkama.</p>
+      <h2>Proč to vlastně dělám.</h2>
+      <p>Baví mě raritní hardware. Zkouším a ladím telefony ke kterým se tu běžný člověk jen tak nedostane.</p>
+      <p>Když mě kousek omrzí nebo ho doprozkoumám, vyčistím ho a pošlu dál za super cenu. Všechno mám fyzicky u sebe v Česku, připravené k okamžitému odeslání.</p>
 
-      <div style="background: rgba(0,0,0,0.03); padding: 30px; border-radius: 20px; margin-top: 40px; text-align: left; border: 1px solid var(--nav-border);">
-        <h3 style="margin-bottom: 12px; font-size: 20px;">Kontakt & Nákup:</h3>
-        <p style="color: var(--text); font-size: 16px; margin-bottom: 8px; font-weight: 500;">📱 WhatsApp: +420 123 456 789</p>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">⚠️ <em>Z důvodu testování hovory nepřijímám. Pište zprávy. Ručím pouze za plnou funkčnost při převzetí (viz pravidla výše).</em></p>
+      <div class="social-btns">
+        <a href="https://instagram.com" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+        <a href="https://tiktok.com" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+          TikTok
+        </a>
+      </div>
+
+      <div style="background: var(--surface); padding: 30px; border-radius: 24px; margin-top: 40px; text-align: left;">
+        <h3 style="margin-bottom: 12px; font-size: 20px;">Kontakt:</h3>
+        <p style="color: var(--text); font-size: 16px; margin-bottom: 8px; font-weight: 600;">📱 WhatsApp: +420 123 456 789</p>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">⚠️ <em>Hovory neberu, pište prosím výhradně zprávy.</em></p>
       </div>
     </div>
   </div>
@@ -707,27 +761,25 @@
         '[ Fotka 4/8: Pravý bok s tlačítky ]',
         '[ Fotka 5/8: Levý bok ]',
         '[ Fotka 6/8: USB-C port a spodek ]',
-        '[ Fotka 7/8: Detail na UV plombu ]',
+        '[ Fotka 7/8: Detail na plombu ]',
         '[ Fotka 8/8: Krabička a příslušenství ]'
       ],
       specs: {
         'Stav zařízení': 'S (Jako nový)',
+        'Kondice baterie': '94 %',
         'Software': 'Čistý CN firmware',
-        'Záruka': 'Garance při převzetí',
-        'Dostupnost': 'Skladem v Praze'
+        'Podpora češtiny': 'Částečná (přes SetEdit)'
       },
       itemSpecs: {
-        'Vizuální stav': 'Stav S - Bez jediného škrábance',
-        'Kondice baterie (Battery Health)': '94 % původní kapacity',
-        'Vyměněné díly': 'Žádné (100% původní tovární hardware)',
-        'Podpora češtiny (SW)': 'CN ROM (angličtina / částečná čeština přes MoreLocale)'
+        'Vyměněné díly': 'Žádné (100% originál)',
+        'Vizuální vady': 'Bez vad'
       }
     },
     'p50pro': {
       name: 'Huawei P50 Pro',
       tagline: 'Legenda mobilní fotografie.',
       basePrice: 13990,
-      desc: 'Nekompromisní fotografický nástroj s původním HarmonyOS. Chceš Google a instalaci bez starostí? Přihoď si Lucker Setup a pošlu ti to s nastaveným microG a odladěným systémem.',
+      desc: 'Nekompromisní fotografický nástroj. Chceš Google a instalaci bez starostí? Přihoď si Lucker Setup a pošlu ti to s nastaveným microG a odladěným systémem.',
       images: [
         '[ Fotka 1/8: Zepředu - Displej ]',
         '[ Fotka 2/8: Zezadu - Cocoa Gold ]',
@@ -735,20 +787,18 @@
         '[ Fotka 4/8: Rámeček zařízení ]',
         '[ Fotka 5/8: Vrchní strana ]',
         '[ Fotka 6/8: Spodní hrana ]',
-        '[ Fotka 7/8: Detail UV plomby v šroubku ]',
+        '[ Fotka 7/8: Detail plomby v šroubku ]',
         '[ Fotka 8/8: Kompletní balení ]'
       ],
       specs: {
         'Stav zařízení': 'A- (Vyměněná baterie)',
+        'Kondice baterie': '100 % (Nová)',
         'Software': 'HarmonyOS (CN)',
-        'Záruka': 'Garance při převzetí',
-        'Dostupnost': 'Skladem v Praze'
+        'Podpora češtiny': 'Plná'
       },
       itemSpecs: {
-        'Vizuální stav': 'Stav A- (Minimální vlásečnice na rámečku)',
-        'Kondice baterie (Battery Health)': '100 % (Nová profi baterie)',
-        'Vyměněné díly': 'Profesionálně vyměněná baterie (-)',
-        'Podpora češtiny (SW)': 'HarmonyOS s plnou podporou microG a češtiny'
+        'Vyměněné díly': 'Nová baterie (profi výměna)',
+        'Vizuální vady': 'Vlásečnice na rámu'
       }
     }
   };
@@ -789,26 +839,25 @@
     renderGallery();
   }
 
-  function toggleSetup() {
+  function toggleServices() {
     if(!currentProductId) return;
     const p = products[currentProductId];
-    const checkbox = document.getElementById('setup-checkbox');
-    const label = document.getElementById('setup-label');
+    
+    const setupCheck = document.getElementById('setup-checkbox');
+    const setupLabel = document.getElementById('setup-label');
     const priceEl = document.getElementById('pd-price');
     
     let finalPrice = p.basePrice;
-    if (checkbox.checked) {
+    
+    if (setupCheck && setupCheck.checked) {
       finalPrice += 300;
-      label.classList.add('active');
+      if (setupLabel) setupLabel.classList.add('active');
     } else {
-      label.classList.remove('active');
+      if (setupLabel) setupLabel.classList.remove('active');
     }
     
-    // Casino slot machine rolling effect animation
-    priceEl.classList.remove('slot-animating');
-    void priceEl.offsetWidth; 
-    priceEl.innerText = formatPrice(finalPrice);
-    priceEl.classList.add('slot-animating');
+    // Casino rolling animation for the price
+    priceEl.innerHTML = `<span class="casino-rolling">${formatPrice(finalPrice)}</span>`;
   }
 
   function openProduct(id) {
@@ -821,28 +870,25 @@
     document.getElementById('pd-name').innerText = p.name;
     document.getElementById('pd-tagline').innerText = p.tagline;
     
-    const checkbox = document.getElementById('setup-checkbox');
-    if (checkbox) checkbox.checked = false;
-    const label = document.getElementById('setup-label');
-    if (label) label.classList.remove('active');
+    // Reset checkbox
+    const setupCheck = document.getElementById('setup-checkbox');
+    if (setupCheck) setupCheck.checked = false;
+    const setupLabel = document.getElementById('setup-label');
+    if (setupLabel) setupLabel.classList.remove('active');
     
     const priceEl = document.getElementById('pd-price');
-    priceEl.innerText = formatPrice(p.basePrice);
-    priceEl.classList.remove('slot-animating');
+    priceEl.innerHTML = formatPrice(p.basePrice);
     
     document.getElementById('pd-desc').innerText = p.desc;
     renderGallery();
     
     const specsList = document.getElementById('pd-specs');
-    specsList.innerHTML = '';
-    for (const [key, value] of Object.entries(p.specs)) {
-      specsList.innerHTML += `<li><span>${key}</span><span>${value}</span></li>`;
-    }
-
-    const itemSpecsList = document.getElementById('pd-item-specs');
-    itemSpecsList.innerHTML = '';
-    for (const [key, value] of Object.entries(p.itemSpecs)) {
-      itemSpecsList.innerHTML += `<li><span>${key}</span><span>${value}</span></li>`;
+    if (specsList) {
+        specsList.innerHTML = '';
+        const unifiedSpecs = { ...p.specs, ...p.itemSpecs };
+        for (const [key, value] of Object.entries(unifiedSpecs)) {
+          specsList.innerHTML += `<li><span>${key}</span><span>${value}</span></li>`;
+        }
     }
     
     navigate('product-detail');
