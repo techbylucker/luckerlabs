@@ -393,8 +393,9 @@
         <a onclick="navigate('certified')" class="btn secondary">Proces certifikace</a>
       </div>
       
-      <div class="hero-image-placeholder">
-        [ Zde bude tvá obří ateliérová fotka (Hero Shot) na šedém/černém pozadí ]
+      <!-- LuckerLabs Banner -->
+      <div style="margin-top: 60px; width: 100%; max-width: 1000px; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+        <img src="banner.jpg" alt="LuckerLabs Banner" style="width: 100%; display: block;">
       </div>
     </div>
   </div>
@@ -403,8 +404,7 @@
     <h1 class="section-title">Modely skladem.</h1>
     
     <div class="grid-products">
-      
-      <!-- INZERÁT 1: Po kliknutí zavolá funkci openProduct s ID produktu -->
+      <!-- INZERÁT 1 -->
       <div class="product-item" onclick="openProduct('mi10ultra')">
         <div class="product-item-img">[ Velká fotka Mi 10 Ultra bez pozadí ]</div>
         <h3>Xiaomi Mi 10 Ultra</h3>
@@ -419,7 +419,6 @@
         <div class="price">13 990 Kč</div>
         <span class="btn secondary" style="font-size: 12px; padding: 8px 16px;">Zjistit více</span>
       </div>
-      
     </div>
   </div>
 
@@ -451,28 +450,18 @@
         <a href="https://wa.me/420000000000" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px;">Koupit přes WhatsApp</a>
         <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">Osobní předání v Praze nebo Zásilkovna.</p>
         
-        <ul class="specs-list" id="pd-specs">
-          <!-- Zde se generují specifikace z JS -->
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="detail-price-box">
-        <div class="price" id="pd-price">00 000 Kč</div>
-        <a href="https://wa.me/420000000000" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px;">Koupit přes WhatsApp</a>
-        <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">Osobní předání v Praze nebo Zásilkovna.</p>
-        
-        <!-- NOVÝ BOX: Příplatkový Lucker Setup -->
+        <!-- PŘÍPLATKOVÝ BOX -->
         <div style="background: var(--surface); padding: 20px; border-radius: 16px; margin-top: 24px; border: 1px solid var(--nav-border); text-align: left;">
           <h3 style="font-size: 16px; margin-bottom: 8px;">➕ Volitelný Lucker Setup (+ 300 Kč)</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.5;">Nechceš se s ničím drbat? Před odesláním telefon přes ADB profesionálně odhmyzím od asijského bloatwaru a nainstaluji kompletní Google služby (microG). Přijde ti kousek, který jen zapneš a rovnou funguješ.</p>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.5;">Nechceš se s ničím drbat? Před odesláním telefon profesionálně odhmyzím od asijského bloatwaru a nainstaluji kompletní Google služby (microG). Přijde ti kousek, který jen zapneš a rovnou funguješ.</p>
         </div>
 
         <ul class="specs-list" id="pd-specs">
           <!-- Zde se generují specifikace z JS -->
         </ul>
       </div>
+    </div>
+  </div>
 
   <div id="certified" class="page-view">
     <h1 class="section-title">Lucker Certified.</h1>
@@ -494,29 +483,26 @@
   </div>
 
   <div id="about" class="page-view">
-    <h1 class="section-title">O mně.</h1>
+    <h1 class="section-title">O mně a kontakt.</h1>
     <div class="text-block">
       <h2>Telefony neschovávám. Ladím je.</h2>
       <p>
         Celé LuckerLabs vzniklo z frustrace z asijského dropshippingu. Člověk chce exkluzivní kus hardwaru, ale dočká se nulové podpory, zamatlaného displeje a rozbitého softwaru.
       </p>
       <p>
-        Vybral jsem jinou cestu. Kupuji ty nejrůznější modely, dělám jim detailing a prodávám je, až když mi reálně leží na stole. Žádný čekání, žádný stres.
+        Vybral jsem jinou cestu. Kupuji ty nejlepší modely, dělám jim detailing a prodávám je, až když mi reálně leží na stole v Praze. Žádný čekání, žádný stres.
       </p>
-    </div>
-  </div>
 
-  <!-- KONTAKTNÍ BOX -->
+      <!-- KONTAKTNÍ BOX -->
       <div style="background: var(--surface); padding: 30px; border-radius: 20px; margin-top: 40px; text-align: left; border: 1px solid var(--nav-border);">
         <h3 style="margin-bottom: 12px; font-size: 20px;">Jak nakupovat:</h3>
-        <p style="color: var(--text); font-size: 16px; margin-bottom: 8px; font-weight: 500;">📱 +420 123 456 789 <!-- TADY DOPLŇ SVOJE ČÍSLO --></p>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">⚠️ <em>Z důvodu testování zařízení a školy hovory nepřijímám. Pište prosím výhradně SMS nebo WhatsApp. Prodej ze soukromé sbírky, záruku neposkytuji, ručím pouze za funkčnost při převzetí.</em></p>
+        <p style="color: var(--text); font-size: 16px; margin-bottom: 8px; font-weight: 500;">📱 +420 123 456 789</p>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">⚠️ <em>Z důvodu testování zařízení hovory nepřijímám. Pište prosím výhradně SMS nebo WhatsApp. Prodej ze soukromé sbírky, záruku neposkytuji, ručím pouze za funkčnost při převzetí.</em></p>
       </div>
     </div>
   </div>
-  
-</main>
 
+</main>
 <footer>
   LuckerLabs. © 2026
 </footer>
