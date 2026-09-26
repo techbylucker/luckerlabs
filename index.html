@@ -21,6 +21,7 @@
     --accent: #0066cc;
     --accent-hover: #0077ED;
     --btn-text: #ffffff;
+    --grade-s: #0066cc;
   }
 
   [data-theme="dark"] {
@@ -34,6 +35,7 @@
     --accent: #2997ff;
     --accent-hover: #3E9FFF;
     --btn-text: #ffffff;
+    --grade-s: #2997ff;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,7 +51,7 @@
     font-family: var(--font);
     line-height: 1.47059;
     letter-spacing: -0.015em;
-    padding-top: 54px; /* Výška navigace */
+    padding-top: 54px;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
 
@@ -78,8 +80,8 @@
     top: 0; left: 0; right: 0;
     height: 54px;
     background: var(--nav-bg);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
     border-bottom: 1px solid var(--nav-border);
     z-index: 9999;
     display: flex;
@@ -96,7 +98,7 @@
     padding: 0 20px;
   }
 
-  .logo { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; }
+  .logo { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; cursor: pointer; }
   
   .nav-links {
     display: flex;
@@ -105,13 +107,15 @@
   }
   
   .nav-links a {
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
     color: var(--text);
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity 0.3s ease;
-    text-transform: lowercase;
+    text-transform: uppercase;
   }
-  .nav-links a:hover, .nav-links a.active { opacity: 1; font-weight: 500; }
+  .nav-links a:hover, .nav-links a.active { opacity: 1; font-weight: 700; }
 
   .controls { display: flex; align-items: center; gap: 16px; }
   .theme-btn {
@@ -132,67 +136,74 @@
   [data-theme="dark"] .icon-moon { display: block; }
 
   .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: var(--accent);
-    color: var(--btn-text);
-    padding: 12px 24px;
+    color: #ffffff !important;
+    padding: 10px 22px;
     border-radius: 980px;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
     transition: all 0.3s ease;
-    border: none;
+    border: 1px solid var(--accent);
   }
   .btn:hover { background: var(--accent-hover); transform: scale(1.02); }
   
-  .btn.secondary {
-    background: var(--surface);
-    color: var(--text);
+  .btn.outline {
+    background: transparent;
+    color: var(--accent) !important;
   }
-  .btn.secondary:hover { background: var(--nav-border); }
+  .btn.outline:hover {
+    background: rgba(0, 102, 204, 0.1);
+  }
 
   .hero {
     text-align: center;
-    padding: 140px 20px 80px;
+    padding: 100px 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
   }
   .hero h1 {
-    font-size: clamp(48px, 8vw, 100px);
+    font-size: clamp(40px, 8vw, 72px);
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.04em;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
   }
   .hero p.lead {
-    font-size: clamp(20px, 3vw, 28px);
+    font-size: clamp(20px, 3vw, 24px);
     color: var(--text-muted);
-    font-weight: 500;
-    max-width: 650px;
-    margin-bottom: 40px;
+    font-weight: 400;
+    margin-bottom: 32px;
   }
-  .hero-actions { display: flex; gap: 16px; justify-content: center;}
+  .hero-actions { display: flex; gap: 14px; justify-content: center;}
 
-  .hero-image-placeholder {
+  .hero-banner {
     width: 100%;
-    max-width: 1000px;
-    height: 500px;
+    max-width: 900px;
+    height: 400px;
     margin-top: 60px;
     background: var(--surface);
-    border-radius: 32px;
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--nav-border);
     overflow: hidden;
+    position: relative;
   }
 
   .section-title {
     text-align: center;
-    font-size: clamp(32px, 5vw, 64px);
+    font-size: clamp(32px, 5vw, 56px);
     font-weight: 700;
     letter-spacing: -0.03em;
     padding: 100px 0 60px;
@@ -206,14 +217,12 @@
   }
   @media (max-width: 800px) { .grid-products { grid-template-columns: 1fr; } }
 
-  /* TADY JE TEN CLEAN APPLE LOOK BEZ KRABIC */
   .product-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     cursor: pointer;
-    group: hover;
   }
   
   .product-item h3 { 
@@ -246,26 +255,12 @@
   }
   .product-item:hover .product-item-img { transform: scale(1.02); }
 
-  /* PRODUCT DETAIL PAGE */
   .detail-hero {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding-top: 80px;
-  }
-  
-  .detail-badge {
-    background: rgba(41, 151, 255, 0.1);
-    color: var(--accent);
-    padding: 6px 14px;
-    border-radius: 99px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 24px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
   }
 
   .detail-hero h1 {
@@ -288,12 +283,50 @@
     background: var(--surface);
     border-radius: 32px;
     margin: 40px 0;
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-muted);
-    font-size: 14px;
   }
+
+  .gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--nav-border);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+  }
+  .gallery-nav:hover { background: var(--text); color: var(--bg); }
+  .gallery-nav.prev { left: 20px; }
+  .gallery-nav.next { right: 20px; }
+
+  .gallery-dots {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  .gallery-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .gallery-dot.active { background: #ffffff; }
 
   .detail-info-grid {
     display: grid;
@@ -307,16 +340,55 @@
     .detail-image-box { height: 350px; border-radius: 20px;}
   }
 
-  .detail-price-box {
-    text-align: left;
+  .detail-price-box { text-align: left; }
+  .price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
   }
   .detail-price-box .price {
     font-size: 48px;
     font-weight: 700;
     letter-spacing: -0.03em;
-    margin-bottom: 24px;
   }
   
+  /* CASINO SLOT MACHINE ROLL ANIMATION */
+  @keyframes slot-roll {
+    0% { transform: translateY(-12px); opacity: 0; filter: blur(4px); }
+    50% { transform: translateY(4px); opacity: 0.8; }
+    100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+  }
+  .slot-animating {
+    animation: slot-roll 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    display: inline-block;
+    color: var(--accent);
+  }
+
+  .setup-card {
+    background: var(--surface);
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 24px;
+    border: 1px solid var(--nav-border);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transition: all 0.2s ease;
+  }
+  .setup-card input[type="checkbox"] {
+    margin-top: 4px;
+    transform: scale(1.3);
+    accent-color: var(--accent);
+  }
+  .setup-card.active {
+    border-color: var(--accent);
+    background: rgba(0, 102, 204, 0.05);
+  }
+
   .specs-list {
     list-style: none;
     margin-top: 24px;
@@ -332,21 +404,68 @@
   .specs-list li span:first-child { color: var(--text-muted); }
 
   .text-block {
-    max-width: 700px;
-    margin: 0 auto 100px;
-    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: left;
+    background: var(--surface);
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid var(--nav-border);
   }
   .text-block h2 {
-    font-size: 40px;
+    font-size: 28px;
     font-weight: 700;
+    margin-bottom: 16px;
     letter-spacing: -0.02em;
-    margin-bottom: 24px;
   }
   .text-block p {
-    font-size: 20px;
     color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .text-block p:last-child { margin-bottom: 0; }
+
+  .condition-grid {
+    max-width: 800px;
+    margin: 0 auto 100px;
+    display: flex;
+    flex-direction: column;
+  }
+  .condition-row {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--nav-border);
+  }
+  .condition-row:last-child { border-bottom: none; }
+  .condition-grade {
+    font-size: 48px;
+    font-weight: 800;
+    min-width: 80px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  
+  .grade-s { color: var(--grade-s); }
+  .grade-a { color: #32D74B; }
+  .grade-b { color: #FF9F0A; }
+  .grade-c { color: #FF453A; }
+
+  .condition-desc h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .condition-desc p {
+    color: var(--text-muted);
+    font-size: 16px;
     line-height: 1.5;
-    margin-bottom: 24px;
+  }
+  @media (max-width: 600px) {
+    .condition-row { flex-direction: column; gap: 10px; }
   }
 
   footer {
@@ -358,7 +477,6 @@
     margin-top: 60px;
   }
 
-  /* SVG Icons */
   svg.check-icon { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 </style>
 </head>
@@ -366,12 +484,12 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="logo" onclick="navigate('home')" style="cursor: pointer;">LuckerLabs.</div>
+    <div class="logo" onclick="navigate('home')">LuckerLabs.</div>
     <ul class="nav-links">
-      <li><a onclick="navigate('home')" data-target="home" class="active">Domů</a></li>
-      <li><a onclick="navigate('nabidka')" data-target="nabidka">Showroom</a></li>
-      <li><a onclick="navigate('certified')" data-target="certified">Certifikace</a></li>
-      <li><a onclick="navigate('about')" data-target="about">O mně</a></li>
+      <li><a onclick="navigate('home')" data-target="home" class="active">DOMŮ</a></li>
+      <li><a onclick="navigate('nabidka')" data-target="nabidka">SHOWROOM</a></li>
+      <li><a onclick="navigate('howitworks')" data-target="howitworks">JAK TO FUNGUJE</a></li>
+      <li><a onclick="navigate('about')" data-target="about">O MNĚ</a></li>
     </ul>
     <div class="controls">
       <button class="theme-btn" id="themeToggle" aria-label="Přepnout motiv">
@@ -384,115 +502,163 @@
 
 <main class="container">
   
-  <!-- DOMOVSKÁ STRÁNKA -->
   <div id="home" class="page-view active">
     <div class="hero">
       <h1>Čistý tech.<br>Bez kompromisů.</h1>
       <p class="lead">Exkluzivní asijské modely. Vyladěné v LuckerLabu.</p>
+      
       <div class="hero-actions">
         <a onclick="navigate('nabidka')" class="btn">Prohlédnout showroom</a>
-        <a onclick="navigate('certified')" class="btn secondary">Proces certifikace</a>
+        <a onclick="navigate('howitworks')" class="btn outline">Jak to funguje</a>
       </div>
       
-      <!-- Tvůj vygenerovaný Banner -->
-      <div style="margin-top: 60px; width: 100%; max-width: 1000px; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
-        <img src="banner.jpg" alt="LuckerLabs Banner" style="width: 100%; display: block;">
+      <div class="hero-banner">
+        [ TADY BUDE TVOJE FOTKA / BANNER ]
       </div>
     </div>
   </div>
 
-  <!-- SHOWROOM (Nabídka) -->
   <div id="nabidka" class="page-view">
     <h1 class="section-title">Modely skladem.</h1>
     
     <div class="grid-products">
       <div class="product-item" onclick="openProduct('mi10ultra')">
-        <div class="product-item-img">[ Velká fotka Mi 10 Ultra bez pozadí ]</div>
+        <div class="product-item-img">[ Fotka 1 z 8: Xiaomi Mi 10 Ultra ]</div>
         <h3>Xiaomi Mi 10 Ultra</h3>
         <div class="price">11 490 Kč</div>
-        <span class="btn secondary" style="font-size: 12px; padding: 8px 16px;">Zjistit více</span>
       </div>
 
       <div class="product-item" onclick="openProduct('p50pro')">
-        <div class="product-item-img">[ Velká fotka P50 Pro bez pozadí ]</div>
+        <div class="product-item-img">[ Fotka 1 z 8: Huawei P50 Pro ]</div>
         <h3>Huawei P50 Pro</h3>
         <div class="price">13 990 Kč</div>
-        <span class="btn secondary" style="font-size: 12px; padding: 8px 16px;">Zjistit více</span>
       </div>
     </div>
   </div>
 
-  <!-- DYNAMICKÝ DETAIL PRODUKTU (Tohle dělalo bordel) -->
   <div id="product-detail" class="page-view">
     <div class="detail-hero">
-      <div class="detail-badge">
-        <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-        Lucker Certified
-      </div>
       <h1 id="pd-name">Název Telefonu</h1>
       <p class="tagline" id="pd-tagline">Krátký úderný podtitulek telefonu.</p>
       
-      <div class="detail-image-box" id="pd-image">
-        [ Zde bude obrovská produktová fotka ]
+      <div class="detail-image-box" id="pd-image-container">
+        <button class="gallery-nav prev" onclick="changeImage(-1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div id="pd-image-content" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-weight:500;">
+          <!-- Fotky z JS (celkem 8) -->
+        </div>
+        <button class="gallery-nav next" onclick="changeImage(1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="gallery-dots" id="pd-dots"></div>
       </div>
     </div>
 
     <div class="detail-info-grid">
       <div class="detail-desc">
         <h3 style="font-size: 24px; margin-bottom: 16px; letter-spacing: -0.02em;">O tomto kusu</h3>
-        <p style="font-size: 17px; color: var(--text-muted); line-height: 1.5;" id="pd-desc">
+        <p style="font-size: 17px; color: var(--text-muted); line-height: 1.5; margin-bottom: 30px;" id="pd-desc">
           Popis produktu.
         </p>
+
+        <h3 style="font-size: 20px; margin-bottom: 12px; letter-spacing: -0.02em;">Detailní stav kusovky</h3>
+        <ul class="specs-list" id="pd-item-specs" style="margin-top:0;"></ul>
       </div>
 
       <div class="detail-price-box">
-        <div class="price" id="pd-price">00 000 Kč</div>
-        <a href="https://wa.me/420123456789" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px;">Koupit přes WhatsApp</a>
+        <div class="price-wrapper">
+          <div class="price" id="pd-price">00 000 Kč</div>
+          <div class="detail-badge">
+            <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            Lucker Certified
+          </div>
+        </div>
+        <a href="https://wa.me/420123456789" target="_blank" class="btn" style="width: 100%; font-size: 17px; padding: 16px; border:none;">Koupit přes WhatsApp</a>
         <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">Osobní předání v Praze nebo Zásilkovna.</p>
         
-        <!-- PŘÍPLATKOVÁ SLUŽBA -->
-        <div style="background: var(--surface); padding: 20px; border-radius: 16px; margin-top: 24px; border: 1px solid var(--nav-border); text-align: left;">
-          <h3 style="font-size: 16px; margin-bottom: 8px;">➕ Volitelný Lucker Setup (+ 300 Kč)</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.5;">Nechceš se s ničím drbat? Před odesláním telefon profesionálně odhmyzím od asijského bloatwaru a nainstaluji kompletní Google služby (microG). Přijde ti kousek, který jen zapneš a rovnou funguješ.</p>
-        </div>
+        <label class="setup-card" id="setup-label">
+          <input type="checkbox" id="setup-checkbox" onchange="toggleSetup()">
+          <div>
+            <h3 style="font-size: 16px; margin-bottom: 8px;">➕ Lucker Setup (+ 300 Kč)</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.5;">Nechceš se s ničím drbat? Před odesláním telefon odhmyzím od asijského bloatwaru a nainstaluji microG. Přijde ti kousek, který jen zapneš a rovnou funguješ.</p>
+          </div>
+        </label>
 
         <ul class="specs-list" id="pd-specs"></ul>
       </div>
     </div>
   </div>
 
-  <!-- CERTIFIKACE -->
-  <div id="certified" class="page-view">
-    <h1 class="section-title">Lucker Certified.</h1>
+  <div id="howitworks" class="page-view">
+    <h1 class="section-title">Jak to funguje.</h1>
     
     <div class="text-block">
-      <h2>Lucker certified.</h2>
-      <p>Důkladná hardwarová inspekce a precizní detailing. Každý kousek osobně prověřím, vyčistím a připravím do 100% stavu.</p>
+      <h2>Sběratelská vášeň a čistá hra.</h2>
+      <p>Tohle není klasickej e-shop. Jde o <strong>prodej použitých a starých zařízení z mojí osobní sbírky</strong>.</p>
+      <p>Telefony kupuju, protože mě baví asijský exkluzivky. Chvíli si s nima hrajeme, experimentujeme, testujeme fotky, zkoušíme různé funkce a systémy. Když mě omrzí, pošlu je dál, abych měl místo (a peníze) na další kousky.</p>
+      
+      <div style="background: rgba(255, 69, 58, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(255, 69, 58, 0.3); margin-top: 20px;">
+        <p style="color: #FF453A; font-weight: 600; font-size: 16px; margin-bottom: 0;">⚠️ Není tu žádná záruka. Ručím čistě za to, že telefon je 100% funkční ve chvíli osobního předání (nebo doručení zprávou). Jakmile si ho převezmeš a funguje, je tvůj. Další reklamace ani opravy neřeším, nemám na to kapacitu.</p>
+      </div>
     </div>
 
-    <div class="text-block">
-      <h2>Čistý asijský originál.</h2>
-      <p>Žádný ořezaný global. Tovární asijský software v plné palbě a se všema funkcema tak, jak ho výrobce zamýšlel.</p>
+    <h1 class="section-title" style="padding-top: 40px;">Tabulka stavů.</h1>
+    
+    <div class="text-block" style="margin-bottom: 50px;">
+      <p style="font-size: 15px; padding: 16px; background: rgba(41, 151, 255, 0.1); color: var(--accent); border-radius: 12px; display: inline-block;">
+        💡 <strong>Znaménko mínus (-):</strong> Pokud uvidíš u stavu telefonu mínus (např. S- nebo A-), znamená to, že telefon má <strong>profesionálně vyměněný nějaký díl</strong> (typicky nová baterie nebo displej). Hardware je 100% zkontrolovaný a šlape, jen to už není "původní díl z továrny".
+      </p>
     </div>
+    
+    <div class="condition-grid">
+      
+      <div class="condition-row">
+        <div class="condition-grade grade-s">S</div>
+        <div class="condition-desc">
+          <h3>Super (Jako nový)</h3>
+          <p>Absolutně bez škrábanců a oděrek. Zařízení vypadá, jako by právě vyjelo z továrny. 100% původní díly, žádné zásahy do hardwaru ze strany třetích stran.</p>
+        </div>
+      </div>
 
-    <div class="text-block">
-      <h2>Neviditelný UV podpis.</h2>
-      <p>Garantuji, že se v telefonu nehrabal žádný garážový servis. Vnitřní plomba a podpis pod UV světlem jsou absolutním důkazem, že hardware prošel výhradně mýma rukama.</p>
+      <div class="condition-row">
+        <div class="condition-grade grade-a">A</div>
+        <div class="condition-desc">
+          <h3>Velmi dobrý</h3>
+          <p>Skoro jako nový. Může mít pouze zcela minimální, vlásečnicové oděrky viditelné pouze pod silným světlem (nejčastěji mikroškrábance na displeji, pokud se nenosilo sklo). Jinak v perfektní vizuální kondici.</p>
+        </div>
+      </div>
+
+      <div class="condition-row">
+        <div class="condition-grade grade-b">B</div>
+        <div class="condition-desc">
+          <h3>Dobrý</h3>
+          <p>Běžné opotřebení. Telefon má viditelnější oděrky na rámečku, odřeniny od nošení v kapse nebo škrábance na displeji z normálního používání. Hardware je ale 100% funkční a připravený sloužit.</p>
+        </div>
+      </div>
+
+      <div class="condition-row">
+        <div class="condition-grade grade-c">C</div>
+        <div class="condition-desc">
+          <h3>Přijatelný</h3>
+          <p>Hluboké škrábance (deep scratches), výraznější rýhy, praskliny na zádech nebo viditelné stopy po pádu. Ideální jako levný daily driver pro nenáročné uživatele, kteří řeší cenu a ne vizuál.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- O MNĚ A KONTAKT -->
   <div id="about" class="page-view">
-    <h1 class="section-title">O mně a kontakt.</h1>
+    <h1 class="section-title">O mně.</h1>
     <div class="text-block">
-      <h2>Telefony neschovávám. Ladím je.</h2>
+      <h2>Z koníčku garážovej projekt.</h2>
       <p>Celé LuckerLabs vzniklo z frustrace z asijského dropshippingu. Člověk chce exkluzivní kus hardwaru, ale dočká se nulové podpory, zamatlaného displeje a rozbitého softwaru.</p>
-      <p>Vybral jsem jinou cestu. Kupuji ty nejlepší modely, dělám jim detailing a prodávám je, až když mi reálně leží na stole v Praze. Žádný čekání, žádný stres.</p>
+      <p>Vybral jsem jinou cestu. Kupuji ty nejlepší modely do své sbírky, dělám jim detailing, otestuju je a prodávám dál, až když mi reálně leží na stole v Praze. Žádný čekání, žádný stres s celníkama.</p>
 
-      <div style="background: var(--surface); padding: 30px; border-radius: 20px; margin-top: 40px; text-align: left; border: 1px solid var(--nav-border);">
-        <h3 style="margin-bottom: 12px; font-size: 20px;">Jak nakupovat:</h3>
-        <p style="color: var(--text); font-size: 16px; margin-bottom: 8px; font-weight: 500;">📱 +420 123 456 789</p>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">⚠️ <em>Z důvodu testování zařízení hovory nepřijímám. Pište prosím výhradně SMS nebo WhatsApp. Prodej ze soukromé sbírky, záruku neposkytuji, ručím pouze za funkčnost při převzetí.</em></p>
+      <div style="background: rgba(0,0,0,0.03); padding: 30px; border-radius: 20px; margin-top: 40px; text-align: left; border: 1px solid var(--nav-border);">
+        <h3 style="margin-bottom: 12px; font-size: 20px;">Kontakt & Nákup:</h3>
+        <p style="color: var(--text); font-size: 16px; margin-bottom: 8px; font-weight: 500;">📱 WhatsApp: +420 123 456 789</p>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">⚠️ <em>Z důvodu testování hovory nepřijímám. Pište zprávy. Ručím pouze za plnou funkčnost při převzetí (viz pravidla výše).</em></p>
       </div>
     </div>
   </div>
@@ -504,6 +670,20 @@
 </footer>
 
 <script>
+  (function(){
+    let saved = localStorage.getItem('lucker-theme');
+    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const theme = saved || preferred;
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('lucker-theme', next);
+  });
+
   function navigate(viewId) {
     document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
@@ -518,45 +698,151 @@
     'mi10ultra': {
       name: 'Xiaomi Mi 10 Ultra',
       tagline: 'Desetiletí inovací v jednom těle.',
-      price: '11 490 Kč',
+      basePrice: 11490,
       desc: 'Tenhle kousek u nás normálně neseženete. Čistý asijský originál v top stavu. Můžeš si ho nechat v továrním nastavení, nebo si přihoď Lucker Setup a pošlu ti ho hned ready pro ČR.',
-      imageText: '[ Obrovská detailní fotka Mi 10 Ultra ]',
+      images: [
+        '[ Fotka 1/8: Zepředu - Displej ]',
+        '[ Fotka 2/8: Zezadu - Keramická záda ]',
+        '[ Fotka 3/8: Modul fotoaparátu ]',
+        '[ Fotka 4/8: Pravý bok s tlačítky ]',
+        '[ Fotka 5/8: Levý bok ]',
+        '[ Fotka 6/8: USB-C port a spodek ]',
+        '[ Fotka 7/8: Detail na UV plombu ]',
+        '[ Fotka 8/8: Krabička a příslušenství ]'
+      ],
       specs: {
-        'Stav': 'Jako nový (vyčištěno)',
+        'Stav zařízení': 'S (Jako nový)',
         'Software': 'Čistý CN firmware',
         'Záruka': 'Garance při převzetí',
         'Dostupnost': 'Skladem v Praze'
+      },
+      itemSpecs: {
+        'Vizuální stav': 'Stav S - Bez jediného škrábance',
+        'Kondice baterie (Battery Health)': '94 % původní kapacity',
+        'Vyměněné díly': 'Žádné (100% původní tovární hardware)',
+        'Podpora češtiny (SW)': 'CN ROM (angličtina / částečná čeština přes MoreLocale)'
       }
     },
     'p50pro': {
       name: 'Huawei P50 Pro',
       tagline: 'Legenda mobilní fotografie.',
-      price: '13 990 Kč',
+      basePrice: 13990,
       desc: 'Nekompromisní fotografický nástroj s původním HarmonyOS. Chceš Google a instalaci bez starostí? Přihoď si Lucker Setup a pošlu ti to s nastaveným microG a odladěným systémem.',
-      imageText: '[ Obrovská detailní fotka P50 Pro ]',
+      images: [
+        '[ Fotka 1/8: Zepředu - Displej ]',
+        '[ Fotka 2/8: Zezadu - Cocoa Gold ]',
+        '[ Fotka 3/8: Dva kruhové fotomoduly ]',
+        '[ Fotka 4/8: Rámeček zařízení ]',
+        '[ Fotka 5/8: Vrchní strana ]',
+        '[ Fotka 6/8: Spodní hrana ]',
+        '[ Fotka 7/8: Detail UV plomby v šroubku ]',
+        '[ Fotka 8/8: Kompletní balení ]'
+      ],
       specs: {
-        'Stav': 'Výborný (vyčištěno)',
+        'Stav zařízení': 'A- (Vyměněná baterie)',
         'Software': 'HarmonyOS (CN)',
         'Záruka': 'Garance při převzetí',
         'Dostupnost': 'Skladem v Praze'
+      },
+      itemSpecs: {
+        'Vizuální stav': 'Stav A- (Minimální vlásečnice na rámečku)',
+        'Kondice baterie (Battery Health)': '100 % (Nová profi baterie)',
+        'Vyměněné díly': 'Profesionálně vyměněná baterie (-)',
+        'Podpora češtiny (SW)': 'HarmonyOS s plnou podporou microG a češtiny'
       }
     }
   };
+
+  let currentProductId = null;
+  let currentImageIndex = 0;
+
+  function formatPrice(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' Kč';
+  }
+
+  function renderGallery() {
+    if(!currentProductId) return;
+    const p = products[currentProductId];
+    
+    document.getElementById('pd-image-content').innerText = p.images[currentImageIndex];
+    
+    const dotsContainer = document.getElementById('pd-dots');
+    dotsContainer.innerHTML = '';
+    for(let i=0; i<p.images.length; i++) {
+      dotsContainer.innerHTML += `<div class="gallery-dot ${i === currentImageIndex ? 'active' : ''}" onclick="setGalleryImage(${i})"></div>`;
+    }
+  }
+
+  function setGalleryImage(index) {
+    currentImageIndex = index;
+    renderGallery();
+  }
+
+  function changeImage(direction) {
+    if(!currentProductId) return;
+    const p = products[currentProductId];
+    currentImageIndex += direction;
+    
+    if (currentImageIndex < 0) currentImageIndex = p.images.length - 1;
+    if (currentImageIndex >= p.images.length) currentImageIndex = 0;
+    
+    renderGallery();
+  }
+
+  function toggleSetup() {
+    if(!currentProductId) return;
+    const p = products[currentProductId];
+    const checkbox = document.getElementById('setup-checkbox');
+    const label = document.getElementById('setup-label');
+    const priceEl = document.getElementById('pd-price');
+    
+    let finalPrice = p.basePrice;
+    if (checkbox.checked) {
+      finalPrice += 300;
+      label.classList.add('active');
+    } else {
+      label.classList.remove('active');
+    }
+    
+    // Casino slot machine rolling effect animation
+    priceEl.classList.remove('slot-animating');
+    void priceEl.offsetWidth; 
+    priceEl.innerText = formatPrice(finalPrice);
+    priceEl.classList.add('slot-animating');
+  }
 
   function openProduct(id) {
     const p = products[id];
     if(!p) return;
     
+    currentProductId = id;
+    currentImageIndex = 0;
+    
     document.getElementById('pd-name').innerText = p.name;
     document.getElementById('pd-tagline').innerText = p.tagline;
-    document.getElementById('pd-price').innerText = p.price;
+    
+    const checkbox = document.getElementById('setup-checkbox');
+    if (checkbox) checkbox.checked = false;
+    const label = document.getElementById('setup-label');
+    if (label) label.classList.remove('active');
+    
+    const priceEl = document.getElementById('pd-price');
+    priceEl.innerText = formatPrice(p.basePrice);
+    priceEl.classList.remove('slot-animating');
+    
     document.getElementById('pd-desc').innerText = p.desc;
-    document.getElementById('pd-image').innerText = p.imageText;
+    renderGallery();
     
     const specsList = document.getElementById('pd-specs');
     specsList.innerHTML = '';
     for (const [key, value] of Object.entries(p.specs)) {
       specsList.innerHTML += `<li><span>${key}</span><span>${value}</span></li>`;
+    }
+
+    const itemSpecsList = document.getElementById('pd-item-specs');
+    itemSpecsList.innerHTML = '';
+    for (const [key, value] of Object.entries(p.itemSpecs)) {
+      itemSpecsList.innerHTML += `<li><span>${key}</span><span>${value}</span></li>`;
     }
     
     navigate('product-detail');
